@@ -1,9 +1,10 @@
 .wrapper {
-  justify-content: center;
   display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
-.wrapper section {
-  width: 44rem;
-  padding: 0 1rem;
+.wrapper main {
+  width: 46rem;
+  padding: 4rem 0;
 }
