@@ -30,7 +30,9 @@
   border: 1px solid var(--gray-700);
   border-radius: 8px;
   color: var(--gray-100);
+  font-size:var(--font-size-lg);
   height: 3.375rem;
+  line-height: 140%;
   padding: 1rem;
   width: 100%;
 }
@@ -48,6 +50,12 @@
   justify-content: space-between;
   padding: 1rem;
   width: 90px;
+
+  transition: background-color 0.2s;
+}
+
+.taskForm button:hover {
+  background: var(--blue);
 }
 
 .taskForm button span {
