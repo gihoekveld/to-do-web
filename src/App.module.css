@@ -1,0 +1,9 @@
+.wrapper {
+  justify-content: center;
+  display: flex;
+}
+
+.wrapper section {
+  width: 44rem;
+  padding: 0 1rem;
+}
