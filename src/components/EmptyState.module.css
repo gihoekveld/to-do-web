@@ -1,0 +1,21 @@
+.emptyState {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.emptyState img {
+  margin-bottom: 1rem;
+}
+
+.emptyState p {
+  color: var(--gray-300);
+  font-size: var(--font-size-lg);
+  line-height: 140%;
+}
+
+.emptyState p > * {
+  display: block;
+  text-align: center;
+}
