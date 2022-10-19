@@ -27,6 +27,7 @@
   border: 0;
   border-radius: 999px;
   font-size: var(--font-size-sm);
+  font-weight: bold;
   margin-left: 8px;
   padding: 0.125rem 0.5rem;
 } 
@@ -34,26 +35,4 @@
 .main {
   border-top: 1px solid #333333;
   border-radius: 8px;
-}
-
-.emptyState {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.emptyState img {
-  margin-bottom: 1rem;
-}
-
-.emptyState p {
-  color: var(--gray-300);
-  font-size: var(--font-size-lg);
-  line-height: 140%;
-}
-
-.emptyState p > * {
-  display: block;
-  text-align: center;
 }
