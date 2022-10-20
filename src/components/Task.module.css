@@ -1,0 +1,36 @@
+.task {
+  background: var(--gray-500);
+  border: 1px solid var(--gray-400);
+  border-radius: 8px;
+  display: grid;
+  grid-template-columns: 1fr 24px;
+  gap: 0.75rem;
+  padding: 1rem;
+  width: 100%;
+}
+
+.task + .task {
+  margin-bottom: 0.75rem;
+}
+
+.checkboxContainer {
+  align-items: flex-start;
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  gap: 0.75rem;
+}
+
+.trash {
+  align-items: center;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  height: 24px;
+  justify-content: center;
+  width: 24px;
+}
+
+.trash:hover {
+  background: var(--gray-400);
+  color: var(--danger);
+}
