@@ -37,6 +37,10 @@
   width: 100%;
 }
 
+.taskForm input:focus {
+  border: 1px solid var(--purple-dark);
+}
+
 .taskForm button {
   align-items: center;
   background: var(--blue-dark);
