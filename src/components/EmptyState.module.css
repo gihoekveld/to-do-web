@@ -1,8 +1,11 @@
 .emptyState {
   align-items: center;
+  border-top: 1px solid #333333;
+  border-radius: 8px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding: 4rem 0;
 }
 
 .emptyState img {
