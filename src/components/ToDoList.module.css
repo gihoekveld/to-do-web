@@ -30,9 +30,9 @@
   font-weight: bold;
   margin-left: 8px;
   padding: 0.125rem 0.5rem;
-} 
+}
 
 .main {
-  border-top: 1px solid #333333;
-  border-radius: 8px;
+  display: flex;
+  flex-direction: column-reverse;
 }
