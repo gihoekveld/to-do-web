@@ -34,3 +34,7 @@
   background: var(--gray-400);
   color: var(--danger);
 }
+
+.trash .icon {
+  color: var(--gray-300);
+}

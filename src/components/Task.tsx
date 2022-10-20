@@ -39,7 +39,7 @@ export function Task({id, title, isComplete, onChangeTaskStatus, onDeleteTask}: 
         </Checkbox.Label>
       </div>
       <div className={styles.trash} onClick={handleDeleteTask}>
-        <Trash size={16} name="delete" />
+        <Trash size={16} name="delete" className={styles.icon} />
       </div>
     </div>
   )
