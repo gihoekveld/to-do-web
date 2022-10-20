@@ -1,0 +1,64 @@
+.border {
+  align-items: center;
+  background: transparent;
+  border: 2px solid var(--blue);
+  border-radius: 50%;
+  display: flex;
+  cursor: pointer;
+  height: 18px;
+  justify-content: center;
+  position: relative;
+  width: 18px;
+}
+
+.background {
+  background: var(--purple-dark);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  height: 18px;
+  position: relative;
+  width: 18px;
+}
+
+.background:hover {
+  background: var(--purple);
+}
+
+.checkboxInput {
+  --webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  cursor: pointer;
+  border-radius: 50%;
+  height: 100%;
+  position: relative;
+  width: 100%
+}
+
+.checkboxInput:not(:checked):hover {
+  background: var(--blue-dark);
+  opacity: 0.2;
+}
+
+.checkboxInput:checked:hover {
+  background: var(--purple);
+}
+
+.marker {
+  color: var(--gray-100);
+  margin: 2px;
+  position: absolute;
+  left: 0;
+}
+
+.checkboxLabel {
+  cursor: pointer;
+}
+
+.checkboxLabelLineTrough {
+  cursor: pointer;
+  color: var(--gray-300);
+  text-decoration: line-through;
+}
