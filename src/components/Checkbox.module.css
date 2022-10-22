@@ -1,7 +1,7 @@
 .border {
   align-items: center;
   background: transparent;
-  border: 2px solid var(--blue);
+  border: 2px solid var(--violet);
   border-radius: 50%;
   display: flex;
   cursor: pointer;
@@ -12,7 +12,7 @@
 }
 
 .background {
-  background: var(--purple-dark);
+  background: var(--purple);
   border: none;
   border-radius: 50%;
   cursor: pointer;
@@ -22,7 +22,7 @@
 }
 
 .background:hover {
-  background: var(--purple);
+  background: var(--purple-light);
 }
 
 .checkboxInput {
@@ -38,12 +38,12 @@
 }
 
 .checkboxInput:not(:checked):hover {
-  background: var(--blue-dark);
+  background: var(--violet);
   opacity: 0.2;
 }
 
 .checkboxInput:checked:hover {
-  background: var(--purple);
+  background: var(--purple-light);
 }
 
 .marker {

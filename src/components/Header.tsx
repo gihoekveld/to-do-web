@@ -3,7 +3,7 @@ import { PlusCircle } from 'phosphor-react';
 
 import styles from './Header.module.css';
 
-import toDoListLogo from '../assets/to-do-list-logo.svg';
+import codeLearnLogo from '../assets/code-learn-logo.svg';
 
 interface HeaderProps {
   onCreateNewTask: (title: string) => void;
@@ -26,7 +26,7 @@ export function Header({onCreateNewTask}: HeaderProps) {
   return (
     <header className={styles.header}>
       <div>
-        <img src={toDoListLogo} alt="To Do List Logo" />
+        <img src={codeLearnLogo} alt="To Do List Logo" />
       </div>
       <div>
         <form onSubmit={handleCreateNewTask} className={styles.taskForm}>

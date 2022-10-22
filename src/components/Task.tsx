@@ -21,7 +21,7 @@ export function Task({id, title, isComplete, onChangeTaskStatus, onDeleteTask}: 
   }
     
   return (
-    <div className={styles.task}>
+    <div className={isComplete ? styles.task : styles.taskCompleted}>
       <div className={styles.checkboxContainer}>
         <Checkbox.Root isComplete={isComplete}>
           <Checkbox.Input 
@@ -38,9 +38,9 @@ export function Task({id, title, isComplete, onChangeTaskStatus, onDeleteTask}: 
           {title}
         </Checkbox.Label>
       </div>
-      <div className={styles.trash} onClick={handleDeleteTask}>
+      <button className={styles.trash} onClick={handleDeleteTask}>
         <Trash size={16} name="delete" className={styles.icon} />
-      </div>
+      </button>
     </div>
   )
 }

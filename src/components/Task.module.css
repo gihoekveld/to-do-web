@@ -1,6 +1,6 @@
 .task {
-  background: var(--gray-500);
-  border: 1px solid var(--gray-400);
+  background: var(--gray-700);
+  border: 1px solid var(--gray-500);
   border-radius: 8px;
   display: grid;
   grid-template-columns: 1fr 24px;
@@ -9,7 +9,21 @@
   width: 100%;
 }
 
-.task + .task {
+.taskCompleted {
+  background: var(--gray-700);
+  border: 1px solid var(--gray-700);
+  border-radius: 8px;
+  display: grid;
+  grid-template-columns: 1fr 24px;
+  gap: 0.75rem;
+  padding: 1rem;
+  width: 100%;
+}
+
+.task + .task,
+.task + .taskCompleted,
+.taskCompleted + .taskCompleted,
+.taskCompleted + .task {
   margin-bottom: 0.75rem;
 }
 
@@ -22,6 +36,8 @@
 
 .trash {
   align-items: center;
+  background: var(--gray-700);
+  border: 0;
   border-radius: 4px;
   cursor: pointer;
   display: flex;
@@ -30,11 +46,14 @@
   width: 24px;
 }
 
-.trash:hover {
+.trash:focus, .trash:hover {
   background: var(--gray-400);
-  color: var(--danger);
 }
 
 .trash .icon {
   color: var(--gray-300);
+}
+
+.trash:focus .icon, .trash:hover .icon {
+  color: var(--danger);
 }

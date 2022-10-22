@@ -11,11 +11,11 @@
 }
 
 .header .info:first-child strong {
-  color: var(--blue);
+  color: var(--violet-light);
 }
 
 .header .info:last-child strong {
-  color: var(--purple);
+  color: var(--purple-light);
 }
 
 .info strong {
@@ -23,7 +23,7 @@
 } 
 
 .info span {
-  background: var(--gray-400);
+  background: var(--gray-700);
   border: 0;
   border-radius: 999px;
   font-size: var(--font-size-sm);
