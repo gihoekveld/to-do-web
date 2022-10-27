@@ -55,7 +55,7 @@
 
 .checkboxLabel {
   cursor: pointer;
-  word-break: break-word;
+  word-wrap: break-all;
 }
 
 .checkboxLabelLineTrough {
