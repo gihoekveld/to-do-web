@@ -5,6 +5,7 @@ import styles from './App.module.css';
 import './global.css';
 import { ToDoList } from './components/ToDoList';
 import { useState } from 'react';
+import { createTask } from './api/createTask';
 
 const tasksList = [
   {
@@ -64,14 +65,20 @@ function App() {
   }
 
   function handleCreateNewTask(title: string) {
-    const newTask = {
-      id: Math.random().toString(36).substring(2, 9),
-      title,
-      date: new Date().toISOString(),
-      isComplete: false
-    }
+    createTask({title}).then((data) => {
+      console.log('data', data);
 
-    setTasks([...tasks, newTask]);
+      const newTasks = [...tasks, {
+        id: data.id,
+        title: data.title,
+        date: new Date().toISOString(),
+        isComplete: false
+      }];
+
+      setTasks(newTasks);
+    }).catch(() => {
+      alert('Erro ao criar tarefa');
+    }); 
   }
 
   return (
