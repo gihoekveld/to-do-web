@@ -6,8 +6,8 @@ import './global.css';
 import { ToDoList } from './components/ToDoList';
 import { useEffect, useState } from 'react';
 import { changeTaskStatusAPI, createTaskAPI, deleteTaskAPI, listTasksAPI } from './api/taskAPI';
-import axios from 'axios';
-import { BASE_API_PATH } from '../config';
+import { ToastContainer } from 'react-toastify';
+import { errorAlert } from './utils/alert';
 
 export type TStatus = 'to-do' | 'doing' | 'done';
 export interface ITask {
@@ -19,14 +19,6 @@ export interface ITask {
 
 function App() {
   const [tasks, setTasks] = useState<ITask[]>([]);
-
-  useEffect(() => {
-    listTasksAPI().then(tasks => {
-      setTasks(tasks);
-    }).catch(error => {
-      alert('Erro ao listar tarefas');
-    })
-  }, []);
 
   function handleChangeTaskStatus(id: string, status: TStatus) {
     changeTaskStatusAPI({id, status}).then(task => {
@@ -44,8 +36,8 @@ function App() {
       });
   
       setTasks(newTasks);
-    }).catch(error => {
-      alert('Erro ao alterar status da tarefa');
+    }).catch(() => {
+      errorAlert('Erro ao mudar status! Verifique sua conexão com a internet e tente novamente.');
     })
   }
 
@@ -54,8 +46,8 @@ function App() {
       const newTasks = tasks.filter(task => task.id !== id);
 
       setTasks(newTasks);
-    }).catch(error => {
-      alert('Erro ao deletar tarefa');
+    }).catch(() => {
+      errorAlert('Erro ao deletar tarefa! Verifique sua conexão com a internet e tente novamente.');
     })
   }
 
@@ -65,9 +57,17 @@ function App() {
 
       setTasks(newTasks);
     }).catch(() => {
-      alert('Erro ao criar tarefa');
+      errorAlert('Erro ao criar tarefa! Verifique sua conexão com a internet e tente novamente.');
     }); 
   }
+
+  useEffect(() => {
+    listTasksAPI().then(tasks => {
+      setTasks(tasks);
+    }).catch(() => {
+      errorAlert('Erro ao listar tarefas! Verifique sua conexão com a internet e tente novamente.');
+    })
+  }, []);
 
   return (
     <div>
@@ -81,6 +81,7 @@ function App() {
           />
         </main>
       </div>
+      <ToastContainer /> 
     </div>
   )
 }
