@@ -17,7 +17,12 @@ export function TaskMenu ({onDeleteTask, onEditingTask}: TaskMenuProps) {
         </button>
       </DropdownMenu.Trigger>
       <DropdownMenu.Portal>
-        <DropdownMenu.Content className={styles.menu} sideOffset={5} align="end">
+        <DropdownMenu.Content 
+          className={styles.menu} 
+          sideOffset={5} 
+          align="end"
+          onCloseAutoFocus={(event: Event) => event.preventDefault()}
+        >
           <DropdownMenu.Item aria-label="Edit" className={styles.menuItem} onSelect={onEditingTask}>
             <PencilSimple size={16} name="edit" className={styles.edit} />
             <span className={styles.menuItemName}>Editar</span>
