@@ -4,76 +4,64 @@ import styles from './App.module.css';
 
 import './global.css';
 import { ToDoList } from './components/ToDoList';
-import { useState } from 'react';
-import { createTask } from './api/createTask';
+import { useEffect, useState } from 'react';
+import { changeTaskStatusAPI, createTaskAPI, deleteTaskAPI, listTasksAPI } from './api/taskAPI';
+import axios from 'axios';
+import { BASE_API_PATH } from '../config';
 
-const tasksList = [
-  {
-    id: 'bcb89cc4-6130-49d0-b39d-f1fd86db1779',
-    title: 'Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer.',
-    date: '2022-08-01T00:00:00.000Z',
-    isComplete: false
-  },
-  {
-    id: '764c7b98-c7c5-4362-a855-d79277bf71c2',
-    title: 'Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer.',
-    date: '2022-09-10T00:00:00.000Z',
-    isComplete: false
-  },
-  {
-    id: '28294ce0-0955-4550-806b-a00791abcdc2',
-    title: 'Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer.',
-    date: '2022-10-10T00:00:00.000Z',
-    isComplete: false
-  },
-  {
-    id: '10538f4a-722c-44a8-bbdf-bcd595e0c139',
-    title: 'Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer.',
-    date: '2022-10-11T00:00:00.000Z',
-    isComplete: true
-  },
-  {
-    id: '5718ab6f-8566-474e-980b-5d536bd534d5',
-    title: 'Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer.',
-    date: '2022-10-13T00:00:00.000Z',
-    isComplete: true
-  }
-];
+export type TStatus = 'to-do' | 'doing' | 'done';
+export interface ITask {
+  id: string;
+  title: string;
+  created_at: string;
+  status: TStatus;
+}
 
 function App() {
-  const [tasks, setTasks] = useState(tasksList);
+  const [tasks, setTasks] = useState<ITask[]>([]);
 
-  function handleChangeTaskStatus(id: string) {
-    const newTasks = tasks.map(task => {
-      if (task.id === id) {
-        return {
-          ...task,
-          isComplete: !task.isComplete
+  useEffect(() => {
+    listTasksAPI().then(tasks => {
+      setTasks(tasks);
+    }).catch(error => {
+      alert('Erro ao listar tarefas');
+    })
+  }, []);
+
+  function handleChangeTaskStatus(id: string, status: TStatus) {
+    changeTaskStatusAPI({id, status}).then(task => {
+      const newTasks = tasks.map(task => {
+        if (task.id === id) {
+          const status: TStatus = task.status === 'done' ? 'to-do' : 'done';
+  
+          return {
+            ...task,
+            status
+          }
         }
-      }
-
-      return task;
-    });
-
-    setTasks(newTasks);
+  
+        return task;
+      });
+  
+      setTasks(newTasks);
+    }).catch(error => {
+      alert('Erro ao alterar status da tarefa');
+    })
   }
 
   function handleDeleteTask(id: string) {
-    const newTasks = tasks.filter(task => task.id !== id);
+    deleteTaskAPI(id).then(() => {
+      const newTasks = tasks.filter(task => task.id !== id);
 
-    setTasks(newTasks);
+      setTasks(newTasks);
+    }).catch(error => {
+      alert('Erro ao deletar tarefa');
+    })
   }
 
   function handleCreateNewTask(title: string) {
-    createTask({title}).then((data) => {
-      console.log('data', data);
-
-      const newTasks = [...tasks, {
-        id: data.id,
-        title: data.title,
-        date: new Date().toISOString(),
-        isComplete: false
-      }];
+    createTaskAPI({title}).then((newTask) => {
+      const newTasks = [...tasks, newTask];
 
       setTasks(newTasks);
     }).catch(() => {

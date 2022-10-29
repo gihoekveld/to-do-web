@@ -1,15 +1,12 @@
+import { ITask, TStatus } from '../App';
 import { EmptyState } from './EmptyState';
 import { Task } from './Task';
+
 import styles from './ToDoList.module.css';
 
 interface ToDoListProps {
-  tasks: {
-    id: string;
-    title: string;
-    date: string;
-    isComplete: boolean;
-  }[];
-  onChangeTaskStatus: (id: string) => void;
+  tasks: ITask[];
+  onChangeTaskStatus: (id: string, status: TStatus) => void;
   onDeleteTask: (id: string) => void;
 }
 
@@ -18,10 +15,11 @@ export function ToDoList ({tasks, onChangeTaskStatus, onDeleteTask}: ToDoListPro
 
   const isEmtpyList = countTasks === 0;
 
-  const countCompleteTasks = tasks.filter(task => task.isComplete).length;
+  const countCompleteTasks = tasks.filter(task => task.status === 'done').length;
 
-  function handleChangeTaskStatus(id: string) {
-    onChangeTaskStatus(id);
+  function handleChangeTaskStatus(id: string, status: TStatus) {
+    const newStatus = status === 'done' ? 'to-do' : 'done';
+    onChangeTaskStatus(id, newStatus);
   }
 
   function handleDeleteTask(id: string) {
@@ -45,13 +43,15 @@ export function ToDoList ({tasks, onChangeTaskStatus, onDeleteTask}: ToDoListPro
           isEmtpyList
           ? <EmptyState /> 
           : (tasks.map(task => {
+              const isComplete = task.status === 'done';
+
               return (
                 <Task 
                   key={task.id} 
                   id={task.id}
                   title={task.title} 
-                  isComplete={task.isComplete}
-                  onChangeTaskStatus={() => handleChangeTaskStatus(task.id)}
+                  isComplete={isComplete}
+                  onChangeTaskStatus={() => handleChangeTaskStatus(task.id, task.status)}
                   onDeleteTask={() => handleDeleteTask(task.id)}
                 />
               )
