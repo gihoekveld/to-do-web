@@ -9,10 +9,6 @@
   box-shadow: 0 0 0 0px var(--gray-500);
 }
 
-.menuIcon:focus .icon, .menuIcon:hover .icon {
-  color: var(--purple);
-}
-
 .menuItem {
   align-items: center;
   cursor: pointer;
@@ -44,7 +40,6 @@
   font-size: var(--font-size-md);
 }
 
-
 .menuIcon {
   align-items: center;
   background: var(--gray-700);
@@ -63,4 +58,8 @@
 
 .menuIcon .icon {
   color: var(--gray-300);
+}
+
+.menuIcon:focus .icon, .menuIcon:hover .icon {
+  color: var(--purple);
 }
