@@ -1,7 +1,10 @@
 import { Checkbox } from "./Checkbox";
-import { Check, Trash } from "phosphor-react";
+import { Check } from "phosphor-react";
 
 import styles from "./Task.module.css";
+import { TaskMenu } from "./TaskMenu";
+import { ChangeEvent, useState } from "react";
+import { updateTaskContentAPI } from "../api/taskAPI";
 
 interface TaskProps {
   id: string;
@@ -12,12 +15,29 @@ interface TaskProps {
 }
 
 export function Task({id, title, isComplete, onChangeTaskStatus, onDeleteTask}: TaskProps) {
+  const [isEditing, setIsEditing] = useState<boolean>(false);
+  const [newTitle, setNewTitle] = useState<string>(title);
+
   function handleChangeTaskStatus() {
     onChangeTaskStatus();
   }
 
   function handleDeleteTask() {
     onDeleteTask();
+  }
+
+  function handleEditingTask() {
+    setIsEditing(!isEditing);
+  }
+
+  function handleOnChangeTitle(event: ChangeEvent<HTMLTextAreaElement>) {
+    setNewTitle(event.target.value);
+  }
+
+  function handleOnBlurTextArea(event: ChangeEvent<HTMLTextAreaElement>) {
+    updateTaskContentAPI({id, title: newTitle}).then(() => {
+      setIsEditing(false);
+    });
   }
     
   return (
@@ -37,13 +57,27 @@ export function Task({id, title, isComplete, onChangeTaskStatus, onDeleteTask}: 
           />
           {isComplete && (<Checkbox.Icon><Check weight="bold" size={14} /></Checkbox.Icon>)}
         </Checkbox.Root>
-        <Checkbox.Label isComplete={isComplete} htmlFor={`task-${id}`}>
-          {title}
-        </Checkbox.Label>
+        {isEditing ? (
+          <textarea 
+            className={styles.textarea}
+            onBlur={handleOnBlurTextArea}
+            onChange={handleOnChangeTitle}
+            defaultValue={newTitle}
+          />
+        ):(
+          <Checkbox.Label 
+            isComplete={isComplete}
+            htmlFor={`task-${id}`}
+          >
+            {newTitle}
+          </Checkbox.Label>
+        )}
+        
       </div>
-      <button className={styles.trash} onClick={handleDeleteTask}>
-        <Trash size={16} name="delete" className={styles.icon} />
-      </button>
+      <TaskMenu 
+        onDeleteTask={handleDeleteTask}
+        onEditingTask={handleEditingTask}
+      />
     </div>
   )
 }
