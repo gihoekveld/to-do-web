@@ -1,10 +1,11 @@
 import { Checkbox } from "./Checkbox";
 import { Check } from "phosphor-react";
-
-import styles from "./Task.module.css";
 import { TaskMenu } from "./TaskMenu";
 import { ChangeEvent, useState } from "react";
 import { updateTaskContentAPI } from "../api/taskAPI";
+
+import styles from "./Task.module.css";
+import { errorAlert, successAlert } from "../utils/alert";
 
 interface TaskProps {
   id: string;
@@ -27,17 +28,28 @@ export function Task({id, title, isComplete, onChangeTaskStatus, onDeleteTask}: 
   }
 
   function handleEditingTask() {
-    setIsEditing(!isEditing);
+    setIsEditing(true);
   }
 
-  function handleOnChangeTitle(event: ChangeEvent<HTMLTextAreaElement>) {
+  function handleOnChangeTitle(event: ChangeEvent<HTMLInputElement>) {
     setNewTitle(event.target.value);
   }
 
-  function handleOnBlurTextArea(event: ChangeEvent<HTMLTextAreaElement>) {
-    updateTaskContentAPI({id, title: newTitle}).then(() => {
-      setIsEditing(false);
-    });
+  function handleOnKeyDownInput(event: React.KeyboardEvent<HTMLInputElement>) {
+    if (event.key === 'Enter') {
+      handleUpdateTaskContent();
+    }
+  }
+
+  function handleUpdateTaskContent() {
+    setIsEditing(false);
+    updateTaskContentAPI({id, title: newTitle})
+    .then(() => {
+      successAlert('Tarefa atualizada com sucesso');
+    })
+    .catch(() => {
+      errorAlert('Erro ao atualizar tarefa! Verifique sua conexão com a internet e tente novamente.');
+    })
   }
     
   return (
@@ -58,10 +70,12 @@ export function Task({id, title, isComplete, onChangeTaskStatus, onDeleteTask}: 
           {isComplete && (<Checkbox.Icon><Check weight="bold" size={14} /></Checkbox.Icon>)}
         </Checkbox.Root>
         {isEditing ? (
-          <textarea 
-            className={styles.textarea}
-            onBlur={handleOnBlurTextArea}
+          <input
+            ref={ref => ref && ref.focus()} 
+            className={styles.inputTitle}
+            onBlur={handleUpdateTaskContent}
             onChange={handleOnChangeTitle}
+            onKeyDown={handleOnKeyDownInput}
             defaultValue={newTitle}
           />
         ):(
@@ -72,12 +86,22 @@ export function Task({id, title, isComplete, onChangeTaskStatus, onDeleteTask}: 
             {newTitle}
           </Checkbox.Label>
         )}
-        
       </div>
-      <TaskMenu 
-        onDeleteTask={handleDeleteTask}
-        onEditingTask={handleEditingTask}
-      />
+      {isEditing ? (
+        <button 
+          aria-label="Salvar tarefa"
+          title="Salvar tarefa"
+          className={styles.saveButton} 
+          onClick={handleUpdateTaskContent}
+        >
+          <Check className={styles.saveIcon} weight="bold" size={14} />
+        </button>
+      ) : (
+        <TaskMenu 
+          onDeleteTask={handleDeleteTask}
+          onEditingTask={handleEditingTask}
+        />
+      )}
     </div>
   )
 }
