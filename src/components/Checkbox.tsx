@@ -6,11 +6,15 @@ import styles from "./Checkbox.module.css";
 export interface CheckboxRootProps {
   isComplete?: boolean;
   children: ReactNode;
+  onClick: () => void;
 }
 
-function CheckboxRoot({isComplete, children}: CheckboxRootProps) {
+function CheckboxRoot({isComplete, children, onClick}: CheckboxRootProps) {
   return (
-    <div className={isComplete ? styles.background : styles.border}>
+    <div 
+      className={isComplete ? styles.background : styles.border}
+      onClick={onClick}
+    >
       {children}
     </div>
   )
