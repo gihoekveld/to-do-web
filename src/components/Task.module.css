@@ -34,26 +34,17 @@
   gap: 0.75rem;
 }
 
-.trash {
-  align-items: center;
-  background: var(--gray-700);
-  border: 0;
-  border-radius: 4px;
-  cursor: pointer;
-  display: flex;
-  height: 24px;
-  justify-content: center;
-  width: 24px;
-}
+.textarea {
+  background: transparent;
+  border: none;
+  color: var(--gray-100);
+  outline: .075rem dashed var(--gray-400);
+  outline-offset: .5rem;
+  overflow: auto;
 
-.trash:focus, .trash:hover {
-  background: var(--gray-400);
-}
+  resize: none;
 
-.trash .icon {
-  color: var(--gray-300);
-}
-
-.trash:focus .icon, .trash:hover .icon {
-  color: var(--danger);
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
 }
