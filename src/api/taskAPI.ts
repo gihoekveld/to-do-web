@@ -42,7 +42,7 @@ export const changeTaskStatusAPI = async (values: {
   return response.data;
 }
 
-export const updateTaskAPI = async (values: {
+export const updateTaskContentAPI = async (values: {
   id: string;
   title: string;
 }) => {
