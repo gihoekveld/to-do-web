@@ -1,0 +1,66 @@
+.menu {
+  background: var(--gray-700);
+  border: 1px solid var(--gray-500);
+  border-radius: 8px;
+  min-width: 150px;
+}
+
+.menu:focus {
+  box-shadow: 0 0 0 0px var(--gray-500);
+}
+
+.menuIcon:focus .icon, .menuIcon:hover .icon {
+  color: var(--purple);
+}
+
+.menuItem {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  gap: .5rem;
+  padding: .75rem .75rem;
+}
+
+.menuItem:first-child {
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+}
+
+.menuItem:last-child {
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+.menuItem:hover, .menuItem:focus {
+  background: var(--gray-500);
+  box-shadow: none;
+}
+
+.menuItem[aria-label="Delete"]:hover {
+  color: var(--danger);
+}
+
+.menuItemName {
+  font-size: var(--font-size-md);
+}
+
+
+.menuIcon {
+  align-items: center;
+  background: var(--gray-700);
+  border: 0;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  height: 24px;
+  justify-content: center;
+  width: 24px;
+}
+
+.menuIcon:focus, .menuIcon:hover  {
+  background: var(--gray-400);
+}
+
+.menuIcon .icon {
+  color: var(--gray-300);
+}
