@@ -7,23 +7,26 @@ interface TaskProps {
   id: string;
   title: string;
   isComplete: boolean;
-  onChangeTaskStatus: (id: string) => void;
-  onDeleteTask: (id: string) => void;
+  onChangeTaskStatus: () => void;
+  onDeleteTask: () => void;
 }
 
 export function Task({id, title, isComplete, onChangeTaskStatus, onDeleteTask}: TaskProps) {
   function handleChangeTaskStatus() {
-    onChangeTaskStatus(id);
+    onChangeTaskStatus();
   }
 
   function handleDeleteTask() {
-    onDeleteTask(id);
+    onDeleteTask();
   }
     
   return (
     <div className={isComplete ? styles.task : styles.taskCompleted}>
       <div className={styles.checkboxContainer}>
-        <Checkbox.Root isComplete={isComplete}>
+        <Checkbox.Root 
+          isComplete={isComplete} 
+          onClick={handleChangeTaskStatus}
+        >
           <Checkbox.Input 
             type="checkbox" 
             id={`task-${id}`} 
