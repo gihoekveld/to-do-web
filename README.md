@@ -1,6 +1,6 @@
-# To do list
+# To do web
 
-This is a simple to do list developed with React and NodeJS. This project was developed to learn more about React and NodeJS. The project is divided into two parts: the front-end and the back-end. The front-end was developed with React and the back-end with NodeJS and Express. The front-end is available [here](https://github.com/gihoekveld/to-do-list). The back-end is available [here](https://github.com/gihoekveld/to-do-server).
+This is a simple to do list developed with React and NodeJS. This project was developed to learn more about React and NodeJS. The project is divided into two parts: the front-end and the back-end. The front-end was developed with React and the back-end with NodeJS and Express. The front-end is available [here](https://github.com/gihoekveld/to-do-web). The back-end is available [here](https://github.com/gihoekveld/to-do-server).
 
 ## Technologies used ☕️ 🐍 ⚛️
 
