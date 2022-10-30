@@ -62,7 +62,6 @@ The project is still in development. The next steps are:
 
 - [ ] Implement tests with Jest, React Testing Library and Cypress
 - [ ] Implement a storybook to front-end
-- [ ] Implement a database
 
 
 
