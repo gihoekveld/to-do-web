@@ -35,7 +35,7 @@ This is a simple to do list developed with React and NodeJS. This project was de
 ![Screenshot 1](public/screen_shot_deleting_task.png)
 
 ### Show empty list
-![Screenshot 3](public/screen_shot_empty_state.png)'
+![Screenshot 3](public/screen_shot_empty_state.png)
 
 
 ## Installation 💻
